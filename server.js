@@ -1,15 +1,21 @@
 const http = require("http");
+const fs = require("fs");
+
+let HTMl = fs.readFileSync(`${__dirname}/index.html`);
+const names = ["francis", "steve", "rob", "hero"];
+const cars = {
+  name: "Maruthi",
+  model: "suuki",
+};
 
 const server = http.createServer((req, res) => {
-  res.writeHead(200, { "Content-Type": "text/html" });
-  res.write(`
-    <html>
-      <body>
-        <h1 style="background:red">Hello There</h1>
-      </body>
-    </html>
-  `);
-  res.end();
+  res.writeHead(200, { "Content-Type": "application/json" });
+  const json = JSON.stringify({
+    names,
+    cars,
+  });
+
+  res.end(json.toString(json));
 });
 
 const port = 8181;
