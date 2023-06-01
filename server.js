@@ -1,8 +1,17 @@
 const http = require("http");
 
-http
-  .createServer((req, res) => {
-    res.writeHead(200, { "Content-Type": "text/plain" });
-    res.end("Hello Iam response");
-  })
-  .listen(8181, "127.0.0.1");
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { "Content-Type": "text/html" });
+  res.write(`
+    <html>
+      <body>
+        <h1 style="background:red">Hello There</h1>
+      </body>
+    </html>
+  `);
+  res.end();
+});
+
+const port = 8181;
+server.listen(port, "127.0.0.1");
+console.log(`serve is running on ${port} `);
